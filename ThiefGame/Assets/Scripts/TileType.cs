@@ -1,4 +1,4 @@
-public enum CardType {
+public enum TileType {
     neutral,
     boon,
     danger,
