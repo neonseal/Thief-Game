@@ -2,5 +2,6 @@ public enum TileType {
     neutral,
     boon,
     danger,
-    treasure
+    treasure,
+    entrance
 }

@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class TileGhost : BaseTile
 {
-    public bool IsNorthOpen;
-    public bool IsSouthOpen;
-    public bool IsEastOpen;
-    public bool IsWestOpen;
-    public TileType TileType;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +14,9 @@ public class Tile : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnMouseDown() {
+        GetComponentInParent<Board>().AddTile(this);
     }
 }
