@@ -18,6 +18,8 @@ public class Board : MonoBehaviour
 
     private TileDeck deck;
 
+    private int selectedTileValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +47,7 @@ public class Board : MonoBehaviour
             Debug.Log("deck empty");
             return;
         }
-        newTile = deck.DrawTile();
+        newTile = deck.DrawTileFromHand(selectedTileValue);
         newTile = Instantiate(this.newTile, new Vector3(tileGhostToReplace.coordinate.x, 0f, tileGhostToReplace.coordinate.y), Quaternion.identity);
 
         newTile.name = "Tile (" + tileGhostToReplace.coordinate.x + "," + tileGhostToReplace.coordinate.y + ")";
@@ -109,5 +111,20 @@ public class Board : MonoBehaviour
         newTileGhost.coordinate = coordinate;
         newTileGhostGO.name = "TileGhost (" + coordinate.x + "," + coordinate.y + ")";
         return newTileGhost;
+    }
+
+    private void OnEnable()
+    {
+        DeckUI.CardFromHandSelected += OnTileFromHandSelected;
+    }
+
+    private void OnDisable()
+    {
+        DeckUI.CardFromHandSelected -= OnTileFromHandSelected;
+    }
+
+    void OnTileFromHandSelected(int value)
+    {
+        selectedTileValue = value;
     }
 }

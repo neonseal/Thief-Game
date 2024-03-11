@@ -1,0 +1,36 @@
+
+:root {
+	justify-content: center;
+	align-items: center;
+}
+
+.bordered-box {
+	border-width: 4px;
+	border-color: white;
+	border-radius: 15px;
+}
+
+.deck-container {
+	width: 500px;
+	height: 200px;
+	top: 35%;
+		
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.card {
+	width: 100px;
+	height: 150px;
+}
+
+.deck-container Button {
+	background-color: coral;
+	transition:all 0.25s;
+}
+
+.deck-container Button:hover {
+	background-color: brown;
+	scale: 1.1;
+}

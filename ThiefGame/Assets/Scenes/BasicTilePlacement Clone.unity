@@ -123,6 +123,74 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &20268072
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 20268074}
+  - component: {fileID: 20268073}
+  m_Layer: 0
+  m_Name: Deck UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &20268073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20268072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d773173ae414b54181174e9da007f13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _document: {fileID: 942646929}
+  _styleSheet: {fileID: 7433441132597879392, guid: 014407fb9d597bb47b016d4fc7132354, type: 3}
+--- !u!4 &20268074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20268072}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.49168503, y: 1.2403, z: -0.3765227}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &609435979 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7436636754871213497, guid: c070a6e894d49f240a060a4122d742d5, type: 3}
+  m_PrefabInstance: {fileID: 932972135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &609435982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609435979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c30c59b7eb07342a31967704a8e126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileTypes:
+  - {fileID: 5186414216012300397, guid: 9ee6faad9ff04e940b5161c61b6f178b, type: 3}
+  - {fileID: 5186414216012300397, guid: d01d3b3c7c53c5a4eba0296ede492919, type: 3}
+  deckSize: 30
+  handSize: 3
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,8 +348,59 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7436636754871213497, guid: c070a6e894d49f240a060a4122d742d5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 609435982}
   m_SourcePrefab: {fileID: 100100000, guid: c070a6e894d49f240a060a4122d742d5, type: 3}
+--- !u!1 &942646928
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942646930}
+  - component: {fileID: 942646929}
+  m_Layer: 5
+  m_Name: DeckUIDocument
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &942646929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942646928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 0c260e949950d28498d78afaff605f26, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 50d8be2f88e41a34ca5477f92f315c7a, type: 3}
+  m_SortingOrder: 0
+--- !u!4 &942646930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942646928}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,3 +500,5 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 932972135}
+  - {fileID: 20268074}
+  - {fileID: 942646930}
