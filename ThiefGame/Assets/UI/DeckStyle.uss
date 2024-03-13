@@ -23,14 +23,32 @@
 .card {
 	width: 100px;
 	height: 150px;
-}
-
-.deck-container Button {
 	background-color: coral;
 	transition:all 0.25s;
 }
 
-.deck-container Button:hover {
-	background-color: brown;
+.selected-card {
+	background-color: palegoldenrod;
+}
+
+
+.card:hover {
 	scale: 1.1;
+}
+
+.discard-container {
+	width: 100px;
+	height: 100px;
+	top:20%;
+	left: 35%;
+
+	justify-content: space-around;
+}
+
+.discard-button {
+	background-color: red;
+
+	width: 90%;
+	height: 90%;
+	
 }

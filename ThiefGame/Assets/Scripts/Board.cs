@@ -42,7 +42,7 @@ public class Board : MonoBehaviour
 
         //will get rid of the ghosting and what not later
         //just a basic fix to stop errors 
-        if(deck.IsEmpty())
+        if(deck.TileDeckIsEmpty())
         {
             Debug.Log("deck empty");
             return;

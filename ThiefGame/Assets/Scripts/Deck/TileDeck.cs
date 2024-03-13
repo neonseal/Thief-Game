@@ -35,22 +35,32 @@ public class TileDeck : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-    }
+
 
     private GameObject DrawTile()
     {
-        GameObject drawnTile = _tileDeck[0];
-        _tileDeck.Remove(drawnTile);
-        return drawnTile;
+        if(!TileDeckIsEmpty())
+        {
+            GameObject drawnTile = _tileDeck[0];
+            _tileDeck.Remove(drawnTile);
+            return drawnTile;
+        }
+        else
+        {
+            Debug.Log("Deck is Empty");
+            return null;
+        }
+     
     }
 
 
-    public bool IsEmpty()
+    public bool TileDeckIsEmpty()
     {
         return _tileDeck.Count == 0;
     }
+
+
+    //draw a tile from the current hand and then replace it
 
     public GameObject DrawTileFromHand(int selectedTile)
     {
@@ -60,7 +70,6 @@ public class TileDeck : MonoBehaviour
             Debug.LogError("selected tile outside range of hand");
         }
       
-        Debug.Log("tile  " + selectedTile + " selected");
         var drawnTile = _hand[selectedTile];
         _hand.RemoveAt(selectedTile);
         _hand.Insert(selectedTile,DrawTile());
@@ -74,6 +83,10 @@ public class TileDeck : MonoBehaviour
     {
         List<BaseTile> handTiles = new();
 
+        
+        if(TileDeckIsEmpty())
+            return handTiles;
+
         for(int i = 0; i < handSize; i++)
         {
             handTiles.Add(_hand[i].GetComponent<BaseTile>());
@@ -82,9 +95,16 @@ public class TileDeck : MonoBehaviour
         return handTiles;
     }
     
-    private void DiscardHand()
+    public void DiscardHand()
     {
         _hand.Clear();
+
+        for(int i = 0; i < handSize; i++)
+        {
+            _hand.Add(DrawTile());
+        }
+
+        
     }
 
     public void SetSelectedTile(int value)

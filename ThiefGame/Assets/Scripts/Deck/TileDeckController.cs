@@ -17,6 +17,19 @@ public class TileDeckController : MonoBehaviour
         _selectedTileValue = value;
     }
 
+    private void OnDiscardButtonPressed()
+    {
+      
+
+        if(!tileDeck.TileDeckIsEmpty())
+        {
+            tileDeck.DiscardHand();
+        }
+        else
+            Debug.Log("No more cards to discard");
+        deckUI.UpdateCurrentHandTiles(tileDeck.GetHandTiles());
+    }
+
     private void OnTileDrawn()
     {
         deckUI.UpdateCurrentHandTiles(tileDeck.GetHandTiles());
@@ -26,6 +39,8 @@ public class TileDeckController : MonoBehaviour
     {
         TileDeck.TileDrawn += OnTileDrawn;
         DeckUI.TileFromHandSelected += OnTileFromHandSelected;
+        DeckUI.DiscardButtonPressed += OnDiscardButtonPressed;
+
     }
 
     public int GetSelectedTileValue()

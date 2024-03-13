@@ -12,6 +12,7 @@ public class DeckUI : MonoBehaviour
     [SerializeField] private TileDeckController tileDeckController;
 
     public static event Action<int> TileFromHandSelected;
+    public static event Action DiscardButtonPressed;
 
     private List<BaseTile> _currentHandTiles;
     private Coroutine _currentGenerateRoutine;
@@ -58,22 +59,36 @@ public class DeckUI : MonoBehaviour
         deckContainer.Add(cardThree);
 
         root.Add(deckContainer);
+
+        var discardContainer = Create("bordered-box","discard-container");
+
+        var discardButton = Create<Button>("discard-button");
+        discardContainer.Add(discardButton);
+        discardButton.clicked += () => DiscardButtonPressed();
+        root.Add(discardContainer);
     }
 
+    //methods used to organize the ui logic
     private void CardOneUI(Button cardOne)
     {
         cardOne.clicked += () => TileFromHandSelected(0);
 
         var cardOneText = Create<Label>();
-        if(_currentHandTiles.Count != 0)    
-            UpdateCardText(cardOneText,_currentHandTiles[0].Name);
+
+        if(Application.isPlaying)
+        {
+            if(_currentHandTiles?.Count != 0)    
+                UpdateCardText(cardOneText,_currentHandTiles[0].Name);
+        }
+   
 
         
         if(tileDeckController.GetSelectedTileValue() == 0)
         {
-            //make a selected card class in style sheet
-            cardOne.style.backgroundColor = Color.yellow;
+            cardOne.AddToClassList("selected-card");
         }
+        else
+            cardOne.RemoveFromClassList("selected-card");
 
         cardOne.Add(cardOneText);
 
@@ -83,16 +98,24 @@ public class DeckUI : MonoBehaviour
     {
         cardTwo.clicked += () => TileFromHandSelected(1);
 
+        //displays card name 
         var cardTwoText = Create<Label>();
-        if(_currentHandTiles.Count != 0)    
-            UpdateCardText(cardTwoText,_currentHandTiles[1].Name);
+
+        if(Application.isPlaying)
+        {
+            if(_currentHandTiles.Count != 0)    
+                UpdateCardText(cardTwoText,_currentHandTiles[1]?.Name);
+        }
+       
+
 
         
         if(tileDeckController.GetSelectedTileValue() == 1)
         {
-
-            cardTwo.style.backgroundColor = Color.yellow;
+            cardTwo.AddToClassList("selected-card");
         }
+        else
+            cardTwo.RemoveFromClassList("selected-card");
         cardTwo.Add(cardTwoText);
     }
 
@@ -101,13 +124,20 @@ public class DeckUI : MonoBehaviour
         cardThree.clicked += () => TileFromHandSelected(2);
 
         var cardThreeText = Create<Label>();
-        if(_currentHandTiles.Count != 0)    
-            UpdateCardText(cardThreeText,_currentHandTiles[2].Name);
+
+
+        if(Application.isPlaying)
+        {
+            if(_currentHandTiles.Count != 0)    
+                UpdateCardText(cardThreeText,_currentHandTiles[2].Name);
+        }
 
         
          
         if(tileDeckController.GetSelectedTileValue() == 2)
-            cardThree.style.backgroundColor = Color.yellow;
+            cardThree.AddToClassList("selected-card");
+        else
+            cardThree.RemoveFromClassList("selected-card");
         
         cardThree.Add(cardThreeText);
 
