@@ -7,4 +7,7 @@ public abstract class BaseTile : MonoBehaviour
     public bool isEastOpen;
     public bool isWestOpen;
     public TileCoordinate coordinate;
+
+    public string Name;
+
 }

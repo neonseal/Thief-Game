@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _document: {fileID: 942646929}
   _styleSheet: {fileID: 7433441132597879392, guid: 014407fb9d597bb47b016d4fc7132354, type: 3}
+  _tileDeck: {fileID: 609435982}
 --- !u!4 &20268074
 Transform:
   m_ObjectHideFlags: 0

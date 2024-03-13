@@ -115,12 +115,12 @@ public class Board : MonoBehaviour
 
     private void OnEnable()
     {
-        DeckUI.CardFromHandSelected += OnTileFromHandSelected;
+        DeckUI.TileFromHandSelected += OnTileFromHandSelected;
     }
 
     private void OnDisable()
     {
-        DeckUI.CardFromHandSelected -= OnTileFromHandSelected;
+        DeckUI.TileFromHandSelected -= OnTileFromHandSelected;
     }
 
     void OnTileFromHandSelected(int value)

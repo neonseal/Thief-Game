@@ -49,9 +49,10 @@ MonoBehaviour:
   isSouthOpen: 1
   isEastOpen: 1
   isWestOpen: 1
-  tileCoordinate:
+  coordinate:
     x: 0
     y: 0
+  Name: Test Tile 1
   tileType: 0
 --- !u!1 &5394431604049872270
 GameObject:

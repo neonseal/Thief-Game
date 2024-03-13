@@ -52,6 +52,7 @@ MonoBehaviour:
   coordinate:
     x: 0
     y: 0
+  Name: Test Tile 2
   tileType: 0
 --- !u!1 &5394431604049872270
 GameObject:

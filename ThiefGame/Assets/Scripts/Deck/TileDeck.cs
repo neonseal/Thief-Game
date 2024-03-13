@@ -8,10 +8,15 @@ public class TileDeck : MonoBehaviour
     [SerializeField] GameObject[] tileTypes;
     [SerializeField] int deckSize = 5;
     [SerializeField] int handSize = 3;
+    [SerializeField]  TileDeckController tileDeckController;
+
 
     private List<GameObject> _tileDeck;
     private List<GameObject> _hand;
-    private float  _selectedTile;
+    private int  _selectedTile;
+
+    public static event System.Action TileDrawn;
+
 
     private void Awake()
     {
@@ -47,27 +52,47 @@ public class TileDeck : MonoBehaviour
         return _tileDeck.Count == 0;
     }
 
-    public GameObject DrawTileFromHand(int selectedCard)
+    public GameObject DrawTileFromHand(int selectedTile)
     {
-        if(selectedCard > 2 || selectedCard < 0)
+        if(selectedTile > 2 || selectedTile < 0)
         {
-            selectedCard = 0;
-            Debug.LogError("selected card outside range of hand");
+            selectedTile = 0;
+            Debug.LogError("selected tile outside range of hand");
         }
       
-        Debug.Log("card " + selectedCard + " selected");
-        var drawnCard = _hand[selectedCard];
-        _hand.RemoveAt(selectedCard);
-        _hand.Add(DrawTile());
+        Debug.Log("tile  " + selectedTile + " selected");
+        var drawnTile = _hand[selectedTile];
+        _hand.RemoveAt(selectedTile);
+        _hand.Insert(selectedTile,DrawTile());
+        TileDrawn.Invoke();
 
-        return drawnCard;
+        return drawnTile;
      
+    }
+
+    public List<BaseTile> GetHandTiles()
+    {
+        List<BaseTile> handTiles = new();
+
+        for(int i = 0; i < handSize; i++)
+        {
+            handTiles.Add(_hand[i].GetComponent<BaseTile>());
+        }
+
+        return handTiles;
     }
     
     private void DiscardHand()
     {
         _hand.Clear();
     }
+
+    public void SetSelectedTile(int value)
+    {
+        _selectedTile = value;
+    }
+
+
     
 
 }
