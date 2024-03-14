@@ -32,6 +32,7 @@ public class TileDeckController : MonoBehaviour
 
     private void OnTileDrawn()
     {
+        //Debug.Log("tile drawn");
         deckUI.UpdateCurrentHandTiles(tileDeck.GetHandTiles());
     }
 
@@ -40,6 +41,9 @@ public class TileDeckController : MonoBehaviour
         TileDeck.TileDrawn += OnTileDrawn;
         DeckUI.TileFromHandSelected += OnTileFromHandSelected;
         DeckUI.DiscardButtonPressed += OnDiscardButtonPressed;
+
+        deckUI.UpdateCurrentHandTiles(tileDeck.GetHandTiles());
+
 
     }
 

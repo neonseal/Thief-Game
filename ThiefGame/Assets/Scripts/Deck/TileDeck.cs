@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class TileDeck : MonoBehaviour
@@ -84,7 +85,6 @@ public class TileDeck : MonoBehaviour
         }
 
         TileDrawn.Invoke();
-
         return drawnTile;
      
     }
@@ -112,6 +112,9 @@ public class TileDeck : MonoBehaviour
 
         for(int i = 0; i < handSize; i++)
         {
+            if(TileDeckIsEmpty())
+                return;
+
             _hand.Add(DrawTile());
         }
     }

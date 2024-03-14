@@ -37,7 +37,7 @@ public class DeckUI : MonoBehaviour
     {
         yield return null;
 
-        
+
         var root = document.rootVisualElement;
         root.Clear();
 
@@ -190,7 +190,8 @@ public class DeckUI : MonoBehaviour
 
     public void RestartGenerateRoutine()
     {
-        StopCoroutine(_currentGenerateRoutine);
+        if(_currentGenerateRoutine != null)
+            StopCoroutine(_currentGenerateRoutine);
         _currentGenerateRoutine = StartCoroutine(Generate());
         
     }
