@@ -40,11 +40,10 @@ public class Board : MonoBehaviour
 
     public void AddTile(TileGhost tileGhostToReplace) {
 
-        //will get rid of the ghosting and what not later
-        //just a basic fix to stop errors 
-        if(deck.TileDeckIsEmpty())
+      
+        if(deck.TileDeckIsEmpty() && deck.HandIsEmpty())
         {
-            Debug.Log("deck empty");
+            Debug.Log("deck empty and hand empty");
             return;
         }
         newTile = deck.DrawTileFromHand(selectedTileValue);

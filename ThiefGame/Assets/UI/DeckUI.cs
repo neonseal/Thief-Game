@@ -37,7 +37,7 @@ public class DeckUI : MonoBehaviour
     {
         yield return null;
 
-
+        
         var root = document.rootVisualElement;
         root.Clear();
 
@@ -46,17 +46,26 @@ public class DeckUI : MonoBehaviour
 
         var deckContainer = Create("deck-container","bordered-box");
 
-        var cardOne = Create<Button>("card","bordered-box");
-        CardOneUI(cardOne);
-        deckContainer.Add(cardOne);
+        if(_currentHandTiles.Count > 0)
+        {
+            var cardOne = Create<Button>("card","bordered-box");
+            CardOneUI(cardOne);
+            deckContainer.Add(cardOne);
+        }
 
-        var cardTwo = Create<Button>("card","bordered-box");
-        CardTwoUI(cardTwo);
-        deckContainer.Add(cardTwo);
+        if(_currentHandTiles.Count > 1)
+        {
+            var cardTwo = Create<Button>("card","bordered-box");
+            CardTwoUI(cardTwo);
+            deckContainer.Add(cardTwo);
+        }
 
-        var cardThree = Create<Button>("card","bordered-box");
-        CardThreeUI(cardThree);
-        deckContainer.Add(cardThree);
+        if(_currentHandTiles.Count > 2)
+        {
+            var cardThree = Create<Button>("card","bordered-box");
+            CardThreeUI(cardThree);
+            deckContainer.Add(cardThree);
+        }
 
         root.Add(deckContainer);
 
@@ -89,6 +98,8 @@ public class DeckUI : MonoBehaviour
         }
         else
             cardOne.RemoveFromClassList("selected-card");
+
+        
 
         cardOne.Add(cardOneText);
 
