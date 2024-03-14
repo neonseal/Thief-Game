@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -43,28 +44,15 @@ public class DeckUI : MonoBehaviour
 
         root.styleSheets.Add(styleSheet);
 
-
+        //can make the amount of cards generated procedural
         var deckContainer = Create("deck-container","bordered-box");
 
-        if(_currentHandTiles.Count > 0)
-        {
-            var cardOne = Create<Button>("card","bordered-box");
-            CardOneUI(cardOne);
-            deckContainer.Add(cardOne);
-        }
 
-        if(_currentHandTiles.Count > 1)
+        for(int i = 0; i < _currentHandTiles.Count; i++)
         {
-            var cardTwo = Create<Button>("card","bordered-box");
-            CardTwoUI(cardTwo);
-            deckContainer.Add(cardTwo);
-        }
-
-        if(_currentHandTiles.Count > 2)
-        {
-            var cardThree = Create<Button>("card","bordered-box");
-            CardThreeUI(cardThree);
-            deckContainer.Add(cardThree);
+            var card = Create<Button>("card","bordered-box");
+            CardUI(card,i);
+            deckContainer.Add(card);
         }
 
         root.Add(deckContainer);
@@ -75,83 +63,33 @@ public class DeckUI : MonoBehaviour
         discardContainer.Add(discardButton);
         discardButton.clicked += () => DiscardButtonPressed();
         root.Add(discardContainer);
+    
     }
 
-    //methods used to organize the ui logic
-    private void CardOneUI(Button cardOne)
+    private void CardUI(Button card, int numberInHand)
     {
-        cardOne.clicked += () => TileFromHandSelected(0);
+        card.clicked += () => TileFromHandSelected(numberInHand);
 
         var cardOneText = Create<Label>();
 
         if(Application.isPlaying)
         {
             if(_currentHandTiles?.Count != 0)    
-                UpdateCardText(cardOneText,_currentHandTiles[0].Name);
+                UpdateCardText(cardOneText,_currentHandTiles[numberInHand].Name);
         }
    
 
         
-        if(tileDeckController.GetSelectedTileValue() == 0)
+        if(tileDeckController.GetSelectedTileValue() == numberInHand)
         {
-            cardOne.AddToClassList("selected-card");
+            card.AddToClassList("selected-card");
         }
         else
-            cardOne.RemoveFromClassList("selected-card");
+            card.RemoveFromClassList("selected-card");
 
         
 
-        cardOne.Add(cardOneText);
-
-    }
-
-    private void CardTwoUI(Button cardTwo)
-    {
-        cardTwo.clicked += () => TileFromHandSelected(1);
-
-        //displays card name 
-        var cardTwoText = Create<Label>();
-
-        if(Application.isPlaying)
-        {
-            if(_currentHandTiles.Count != 0)    
-                UpdateCardText(cardTwoText,_currentHandTiles[1]?.Name);
-        }
-       
-
-
-        
-        if(tileDeckController.GetSelectedTileValue() == 1)
-        {
-            cardTwo.AddToClassList("selected-card");
-        }
-        else
-            cardTwo.RemoveFromClassList("selected-card");
-        cardTwo.Add(cardTwoText);
-    }
-
-    private void CardThreeUI(Button cardThree)
-    {
-        cardThree.clicked += () => TileFromHandSelected(2);
-
-        var cardThreeText = Create<Label>();
-
-
-        if(Application.isPlaying)
-        {
-            if(_currentHandTiles.Count != 0)    
-                UpdateCardText(cardThreeText,_currentHandTiles[2].Name);
-        }
-
-        
-         
-        if(tileDeckController.GetSelectedTileValue() == 2)
-            cardThree.AddToClassList("selected-card");
-        else
-            cardThree.RemoveFromClassList("selected-card");
-        
-        cardThree.Add(cardThreeText);
-
+        card.Add(cardOneText);
     }
 
 

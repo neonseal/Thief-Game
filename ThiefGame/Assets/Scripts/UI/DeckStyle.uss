@@ -29,6 +29,7 @@
 
 .selected-card {
 	background-color: palegoldenrod;
+	top: 10%;
 }
 
 
