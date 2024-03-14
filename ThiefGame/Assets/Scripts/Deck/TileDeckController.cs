@@ -11,7 +11,7 @@ public class TileDeckController : MonoBehaviour
 
     private void OnTileFromHandSelected(int value)
     {
-        //send data to model
+        //sends selected tile from the ui to model
         tileDeck.SetSelectedTile(value);
         deckUI.RestartGenerateRoutine();
         _selectedTileValue = value;
@@ -32,7 +32,6 @@ public class TileDeckController : MonoBehaviour
 
     private void OnTileDrawn()
     {
-        //Debug.Log("tile drawn");
         deckUI.UpdateCurrentHandTiles(tileDeck.GetHandTiles());
     }
 

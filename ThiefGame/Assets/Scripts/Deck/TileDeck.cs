@@ -69,6 +69,7 @@ public class TileDeck : MonoBehaviour
 
     public GameObject DrawTileFromHand(int selectedTile)
     {
+        //checks if selectedTile is in range of hand
         if(selectedTile > _hand.Count-1 || selectedTile < 0)
         {
             selectedTile = 0;
@@ -89,6 +90,7 @@ public class TileDeck : MonoBehaviour
      
     }
 
+    //returns tiles in hand. doesnt return the full gameobject
     public List<BaseTile> GetHandTiles()
     {
         List<BaseTile> handTiles = new();

@@ -190,8 +190,8 @@ MonoBehaviour:
   tileTypes:
   - {fileID: 5186414216012300397, guid: 9ee6faad9ff04e940b5161c61b6f178b, type: 3}
   - {fileID: 5186414216012300397, guid: d01d3b3c7c53c5a4eba0296ede492919, type: 3}
-  deckSize: 30
-  handSize: 10
+  deckSize: 10
+  handSize: 6
   tileDeckController: {fileID: 609435983}
 --- !u!114 &609435983
 MonoBehaviour:

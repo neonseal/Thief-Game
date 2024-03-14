@@ -25,6 +25,7 @@ public class DeckUI : MonoBehaviour
 
     private void Start()
     {
+        //Using a Coroutine because of the abilitity to do animations in the future
         _currentGenerateRoutine = StartCoroutine(Generate());
     }
 
@@ -44,10 +45,9 @@ public class DeckUI : MonoBehaviour
 
         root.styleSheets.Add(styleSheet);
 
-        //can make the amount of cards generated procedural
         var deckContainer = Create("deck-container","bordered-box");
 
-
+        //creates the UI for the cards in hand
         for(int i = 0; i < _currentHandTiles.Count; i++)
         {
             var card = Create<Button>("card","bordered-box");
@@ -57,6 +57,7 @@ public class DeckUI : MonoBehaviour
 
         root.Add(deckContainer);
 
+        //discard button UI
         var discardContainer = Create("bordered-box","discard-container");
 
         var discardButton = Create<Button>("discard-button");
@@ -77,17 +78,14 @@ public class DeckUI : MonoBehaviour
             if(_currentHandTiles?.Count != 0)    
                 UpdateCardText(cardOneText,_currentHandTiles[numberInHand].Name);
         }
-   
-
         
+        //changes the uss class of the selected card
         if(tileDeckController.GetSelectedTileValue() == numberInHand)
         {
             card.AddToClassList("selected-card");
         }
         else
             card.RemoveFromClassList("selected-card");
-
-        
 
         card.Add(cardOneText);
     }
@@ -105,6 +103,7 @@ public class DeckUI : MonoBehaviour
         return Create<VisualElement>(classNames);
     }
 
+    //creates UI and adds uss classes based on the entered parameters
     T Create<T>(params string[] classNames) where T : VisualElement, new()
     {
         var element = new T();
