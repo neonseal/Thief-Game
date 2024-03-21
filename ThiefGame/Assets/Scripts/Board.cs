@@ -16,6 +16,10 @@ public class Board : MonoBehaviour
     [HideInInspector]
     public static Dictionary<TileCoordinate, TileGhost> availableTiles = new();
 
+    private TileDeck deck;
+
+    private int selectedTileValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +28,8 @@ public class Board : MonoBehaviour
             existingTiles.Add(t.coordinate, t);
         }
         ExpandFromTile(_initialTile.GetComponent<Tile>());
+
+        deck = GetComponent<TileDeck>();
     }
 
     // Update is called once per frame
@@ -33,7 +39,16 @@ public class Board : MonoBehaviour
     }
 
     public void AddTile(TileGhost tileGhostToReplace) {
-        GameObject newTile = Instantiate(this.newTile, new Vector3(tileGhostToReplace.coordinate.x, 0f, tileGhostToReplace.coordinate.y), Quaternion.identity);
+
+      
+        if(deck.TileDeckIsEmpty() && deck.HandIsEmpty())
+        {
+            Debug.Log("deck empty and hand empty");
+            return;
+        }
+        newTile = deck.DrawTileFromHand(selectedTileValue);
+        newTile = Instantiate(this.newTile, new Vector3(tileGhostToReplace.coordinate.x, 0f, tileGhostToReplace.coordinate.y), Quaternion.identity);
+
         newTile.name = "Tile (" + tileGhostToReplace.coordinate.x + "," + tileGhostToReplace.coordinate.y + ")";
         newTile.transform.SetParent(transform);
         Tile newTileComponent = newTile.GetComponent<Tile>();
@@ -95,5 +110,20 @@ public class Board : MonoBehaviour
         newTileGhost.coordinate = coordinate;
         newTileGhostGO.name = "TileGhost (" + coordinate.x + "," + coordinate.y + ")";
         return newTileGhost;
+    }
+
+    private void OnEnable()
+    {
+        DeckUI.TileFromHandSelected += OnTileFromHandSelected;
+    }
+
+    private void OnDisable()
+    {
+        DeckUI.TileFromHandSelected -= OnTileFromHandSelected;
+    }
+
+    void OnTileFromHandSelected(int value)
+    {
+        selectedTileValue = value;
     }
 }
