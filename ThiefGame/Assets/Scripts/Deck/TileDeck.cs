@@ -96,7 +96,10 @@ public class TileDeck : MonoBehaviour
         List<BaseTile> handTiles = new();
 
         if(HandIsEmpty())
+        {
             return handTiles;
+        }
+
 
 
         for(int i = 0; i < _hand.Count; i++)
@@ -115,7 +118,9 @@ public class TileDeck : MonoBehaviour
         for(int i = 0; i < handSize; i++)
         {
             if(TileDeckIsEmpty())
+            {
                 return;
+            }
 
             _hand.Add(DrawTile());
         }

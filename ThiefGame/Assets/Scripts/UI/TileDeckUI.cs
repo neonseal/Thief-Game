@@ -128,7 +128,9 @@ public class DeckUI : MonoBehaviour
     public void RestartGenerateRoutine()
     {
         if(_currentGenerateRoutine != null)
+        {
             StopCoroutine(_currentGenerateRoutine);
+        }
         _currentGenerateRoutine = StartCoroutine(Generate());
         
     }

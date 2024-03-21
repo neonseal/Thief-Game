@@ -26,7 +26,9 @@ public class TileDeckController : MonoBehaviour
             tileDeck.DiscardHand();
         }
         else
+        {
             Debug.Log("No more cards to discard");
+        }
         deckUI.UpdateCurrentHandTiles(tileDeck.GetHandTiles());
     }
 
