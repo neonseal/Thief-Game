@@ -70,3 +70,7 @@ ThiefGame/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 # Temporary auto-generated Android Assets
 ThiefGame/[Aa]ssets/[Ss]treamingAssets/aa.meta
 ThiefGame/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Ignore temporaries from GameCI
+/[Aa]rtifacts/
+/[Cc]odeCoverage/

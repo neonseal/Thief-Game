@@ -1,4 +1,4 @@
-name: build and deploy
+name: Build and Deploy
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
