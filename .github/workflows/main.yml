@@ -1,4 +1,4 @@
-﻿name: Build and Deploy
+﻿name: Build and Deploy 
 run-name: Build and test last commit by @${{ github.actor }}
 on: [push, pull_request]
 jobs:
