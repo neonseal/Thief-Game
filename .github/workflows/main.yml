@@ -13,11 +13,18 @@ jobs:
           lfs: true
    
       # Cache
-      - uses: actions/cache@v3
+      - name: Cache project
+        uses: actions/cache@v3
         with:
-          path: ./ThiefGame
-          key: ${{ runner.os }}-Library-Cache
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
 
+      # Activate
+      - name: Unity - Activate
+        uses: game-ci/unity-activate@v2.0.0
+            
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v4
