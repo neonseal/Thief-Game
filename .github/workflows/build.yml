@@ -1,5 +1,5 @@
 ﻿name: Build Pipeline
-run-name: Build commit $(git rev-parse --short "$GITHUB_SHA") by @${{ github.actor }}
+run-name: Build ${{ github.head_ref }}.${{ github.sha }}
 on:
   pull_request:
 jobs:
