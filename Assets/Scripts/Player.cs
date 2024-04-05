@@ -1,5 +1,5 @@
 /**
- * The primary model of the Player reference
+ * The primary model of the Player reference containing major stats
  */
 public class Player {
     public static byte health = 10;
