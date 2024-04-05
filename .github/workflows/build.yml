@@ -1,10 +1,10 @@
-﻿name: Build and Test Project
-run-name: Build and test commit ${{ github.sha }} by @${{ github.actor }}
+﻿name: Build Pipeline
+run-name: Build commit ${{ git rev-parse --short "$GITHUB_SHA" }} by @${{ github.actor }}
 on:
   pull_request:
 jobs:
   build:
-    name: Build and Test Check
+    name: Build ipeline
     runs-on: ubuntu-latest
     concurrency: 
       group: unity-build

@@ -1,12 +1,12 @@
-﻿name: Build and Deploy to itch.io
-run-name: Build and Deploy to itch.io when merging to master
+﻿name: Build and Deploy Pipeline
+run-name: Build and Deploy to itch.io
 on:
   push: 
     branches: 
       - main
 jobs:
   build:
-    name: Build my project ✨
+    name: Build and Deploy Pipeline
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     concurrency: 
