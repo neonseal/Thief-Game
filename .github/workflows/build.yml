@@ -1,10 +1,14 @@
-﻿name: Build and Deploy 
+﻿name: Build and Test Project
 run-name: Build and test last commit by @${{ github.actor }}
-on: [push, pull_request]
+on:
+  pull_request:
 jobs:
   build:
     name: Build my project ✨
     runs-on: ubuntu-latest
+    concurrency: 
+      group: unity-build
+      cancel-in-progress: true
     steps:
       # Checkout
       - name: Checkout repository
@@ -16,7 +20,7 @@ jobs:
       - name: Cache project
         uses: actions/cache@v4
         with:
-          path: Library
+          path: ../../Library
           key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
           restore-keys: |
             Library-
@@ -30,10 +34,11 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
-          #allowDirtyBuild: true
-
+          buildName: ${{ matrix.targetPlatform }}Build-${{ github.run_number }}-${{ github.run_id }}
+        
       # Output
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Build
           path: build
+
