@@ -47,4 +47,3 @@ jobs:
           ITCH_GAME: thief-game
           ITCH_USER: neonseal 
           PACKAGE: build/WebGL
-

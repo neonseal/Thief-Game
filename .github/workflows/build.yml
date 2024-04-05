@@ -35,12 +35,3 @@ jobs:
         with:
           targetPlatform: WebGL
           buildName: ${{ matrix.targetPlatform }}Build-${{ github.run_number }}-${{ github.run_id }}
-          
-      # Upload to Itch
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: html5
-          ITCH_GAME: thief-game
-          ITCH_USER: neonseal 
-          PACKAGE: build/WebGL
