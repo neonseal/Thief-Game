@@ -1,4 +1,4 @@
-﻿name: Build and Deploy Workflow
+﻿name: Build and Deploy Pipeline
 run-name: Build and Deploy to itch.io by @${{ github.actor }}
 on:
   push: 
@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   build:
-    name: Build and Deploy Pipeline
+    name: Build and Deploy Workflow
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     concurrency: 
