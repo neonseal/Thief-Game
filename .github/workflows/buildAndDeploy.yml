@@ -6,7 +6,7 @@ on:
       - main
 jobs:
   build:
-    name: Build and Deploy Workflow
+    name: Build and Deploy Pipeline
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     concurrency: 

@@ -4,7 +4,7 @@ on:
   pull_request:
 jobs:
   build:
-    name: Build Workflow
+    name: Build Pipeline
     runs-on: ubuntu-latest
     concurrency: 
       group: unity-build
