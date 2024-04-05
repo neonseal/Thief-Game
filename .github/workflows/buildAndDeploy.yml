@@ -39,7 +39,6 @@ jobs:
           targetPlatform: WebGL
           buildName: ${{ matrix.targetPlatform }}Build-${{ github.run_number }}-${{ github.run_id }}
 
-
       # Upload to Itch
       - uses: josephbmanley/butler-publish-itchio-action@master
         env:
