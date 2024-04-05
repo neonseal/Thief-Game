@@ -1,5 +1,5 @@
 ﻿name: Build and Deploy Workflow
-run-name: Build and Deploy to itch.io
+run-name: Build and Deploy to itch.io by @${{ github.actor }}
 on:
   push: 
     branches: 

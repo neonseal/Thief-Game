@@ -1,5 +1,5 @@
 ﻿name: Build Workflow
-run-name: Build ${{ github.head_ref }} by {{github.actor}}
+run-name: Build ${{ github.ref_name }} by {{ github.actor }}
 on:
   pull_request:
 jobs:
@@ -44,11 +44,11 @@ jobs:
 
 
       # Upload to Itch
-      - uses: josephbmanley/butler-publish-itchio-action@master
-        env:
-          BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
-          CHANNEL: html5
-          ITCH_GAME: thief-game
-          ITCH_USER: neonseal 
-          PACKAGE: build/WebGL
+      #- uses: josephbmanley/butler-publish-itchio-action@master
+        #env:
+         # BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+          #CHANNEL: html5
+          #ITCH_GAME: thief-game
+          #ITCH_USER: neonseal 
+          #PACKAGE: build/WebGL
 
