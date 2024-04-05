@@ -1,4 +1,4 @@
-﻿name: Build and Deploy Pipeline
+﻿name: Build and Deploy Workflow
 run-name: Build and Deploy to itch.io
 on:
   push: 

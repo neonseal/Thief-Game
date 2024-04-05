@@ -1,5 +1,5 @@
-﻿name: Build Pipeline
-run-name: Build ${{ github.head_ref }}.${{ github.sha }}
+﻿name: Build Workflow
+run-name: Build ${{ github.head_ref }} by {{github.actor}}
 on:
   pull_request:
 jobs:
@@ -13,6 +13,12 @@ jobs:
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v4
+        shell: bash
+        run: |
+          echo "sha_short=$(git rev-parse --short "$GITHUB_SHA")" >> "$GITHUB_ENV"
+          echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> "$GITHUB_ENV"
+          echo "secret=second_value" >> "$GITHUB_ENV"
+
         with:
           lfs: true
    
@@ -26,7 +32,7 @@ jobs:
             Library-
             
       # Build
-      - name: Build project
+      - name: Build project for commit ${{ env.sha_short }}
         uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
