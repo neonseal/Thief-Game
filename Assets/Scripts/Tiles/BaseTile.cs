@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseTile : MonoBehaviour
-{
+public abstract class BaseTile : MonoBehaviour {
     public bool isNorthOpen;
     public bool isSouthOpen;
     public bool isEastOpen;

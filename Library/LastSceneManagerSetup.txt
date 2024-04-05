@@ -1,1 +1,5 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Scenes/BasicTilePlacement Clone.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0

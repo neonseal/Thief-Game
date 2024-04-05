@@ -353,12 +353,15 @@
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/Unity/Hub/Editor/2022.3.19f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/Scripts/Board.cs"
+"Assets/Scripts/Deck/TileDeck.cs"
+"Assets/Scripts/Deck/TileDeckController.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/Tiles/BaseTile.cs"
 "Assets/Scripts/Tiles/Tile.cs"
 "Assets/Scripts/Tiles/TileCoordinate.cs"
 "Assets/Scripts/Tiles/TileGhost.cs"
 "Assets/Scripts/Tiles/TileType.cs"
+"Assets/Scripts/UI/TileDeckUI.cs"
 -langversion:9.0
 
 /deterministic
