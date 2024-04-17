@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Board : MonoBehaviour
-{
+// Test
+public class Board : MonoBehaviour {
     [SerializeField]
     private GameObject _initialTile;
     [SerializeField]
@@ -21,8 +21,7 @@ public class Board : MonoBehaviour
     private int selectedTileValue;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         Tile[] initialTiles = transform.GetComponentsInChildren<Tile>(false);
         foreach (Tile t in initialTiles) {
             existingTiles.Add(t.coordinate, t);
@@ -33,16 +32,14 @@ public class Board : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
     }
 
     public void AddTile(TileGhost tileGhostToReplace) {
 
-      
-        if(deck.TileDeckIsEmpty() && deck.HandIsEmpty())
-        {
+
+        if (deck.TileDeckIsEmpty() && deck.HandIsEmpty()) {
             Debug.Log("deck empty and hand empty");
             return;
         }
@@ -62,41 +59,37 @@ public class Board : MonoBehaviour
     private void ExpandFromTile(Tile tile) {
         TileCoordinate newTileCoordinate;
         if (tile.isNorthOpen && tile.coordinate.y < sbyte.MaxValue) {
-            newTileCoordinate = new TileCoordinate(tile.coordinate.x, (sbyte) (tile.coordinate.y + 1));
+            newTileCoordinate = new TileCoordinate(tile.coordinate.x, (sbyte)(tile.coordinate.y + 1));
             if (availableTiles.ContainsKey(newTileCoordinate)) {
                 availableTiles[newTileCoordinate].isSouthOpen = true;
-            }
-            else if (!existingTiles.ContainsKey(newTileCoordinate)) {
+            } else if (!existingTiles.ContainsKey(newTileCoordinate)) {
                 TileGhost newTileGhost = InstantiateTileGhost(newTileCoordinate);
                 availableTiles.Add(newTileCoordinate, newTileGhost);
             }
         }
         if (tile.isSouthOpen && tile.coordinate.y > sbyte.MinValue) {
-            newTileCoordinate = new TileCoordinate(tile.coordinate.x, (sbyte) (tile.coordinate.y - 1));
+            newTileCoordinate = new TileCoordinate(tile.coordinate.x, (sbyte)(tile.coordinate.y - 1));
             if (availableTiles.ContainsKey(newTileCoordinate)) {
                 availableTiles[newTileCoordinate].isNorthOpen = true;
-            }
-            else if (!existingTiles.ContainsKey(newTileCoordinate)) {
+            } else if (!existingTiles.ContainsKey(newTileCoordinate)) {
                 TileGhost newTileGhost = InstantiateTileGhost(newTileCoordinate);
                 availableTiles.Add(newTileCoordinate, newTileGhost);
             }
         }
         if (tile.isEastOpen && tile.coordinate.x < sbyte.MaxValue) {
-            newTileCoordinate = new TileCoordinate((sbyte) (tile.coordinate.x + 1), tile.coordinate.y);
+            newTileCoordinate = new TileCoordinate((sbyte)(tile.coordinate.x + 1), tile.coordinate.y);
             if (availableTiles.ContainsKey(newTileCoordinate)) {
                 availableTiles[newTileCoordinate].isWestOpen = true;
-            }
-            else if (!existingTiles.ContainsKey(newTileCoordinate)) {
+            } else if (!existingTiles.ContainsKey(newTileCoordinate)) {
                 TileGhost newTileGhost = InstantiateTileGhost(newTileCoordinate);
                 availableTiles.Add(newTileCoordinate, newTileGhost);
             }
         }
         if (tile.isWestOpen && tile.coordinate.x > sbyte.MinValue) {
-            newTileCoordinate = new TileCoordinate((sbyte) (tile.coordinate.x - 1), tile.coordinate.y);
-           if (availableTiles.ContainsKey(newTileCoordinate)) {
+            newTileCoordinate = new TileCoordinate((sbyte)(tile.coordinate.x - 1), tile.coordinate.y);
+            if (availableTiles.ContainsKey(newTileCoordinate)) {
                 availableTiles[newTileCoordinate].isEastOpen = true;
-            }
-            else if (!existingTiles.ContainsKey(newTileCoordinate)) {
+            } else if (!existingTiles.ContainsKey(newTileCoordinate)) {
                 TileGhost newTileGhost = InstantiateTileGhost(newTileCoordinate);
                 availableTiles.Add(newTileCoordinate, newTileGhost);
             }
@@ -112,18 +105,15 @@ public class Board : MonoBehaviour
         return newTileGhost;
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         DeckUI.TileFromHandSelected += OnTileFromHandSelected;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         DeckUI.TileFromHandSelected -= OnTileFromHandSelected;
     }
 
-    void OnTileFromHandSelected(int value)
-    {
+    void OnTileFromHandSelected(int value) {
         selectedTileValue = value;
     }
 }
