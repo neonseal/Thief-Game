@@ -9,4 +9,8 @@ public abstract class BaseTile : MonoBehaviour {
 
     public string Name;
 
+    public BaseTile northTile;
+    public BaseTile southTile;
+    public BaseTile eastTile;
+    public BaseTile westTile;
 }
