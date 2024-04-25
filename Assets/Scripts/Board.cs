@@ -11,12 +11,14 @@ public class Board : MonoBehaviour {
     private GameObject TileGhostPrefab;
 
     [HideInInspector]
-    public static Dictionary<TileCoordinate, Tile> existingTiles = new();
+    public static Dictionary<TileCoordinate, Tile> existingTiles = new(); 
 
     [HideInInspector]
     public static Dictionary<TileCoordinate, TileGhost> availableTiles = new();
 
     private TileDeck deck;
+
+    private Tile entrance;
 
     private int selectedTileValue;
 
@@ -26,6 +28,10 @@ public class Board : MonoBehaviour {
         foreach (Tile t in initialTiles) {
             existingTiles.Add(t.coordinate, t);
         }
+        entrance = existingTiles[new TileCoordinate(0,0)];
+        Tile initialTile = existingTiles[new TileCoordinate(0, 1)];
+        entrance.northTile = initialTile;
+        initialTile.southTile = entrance;
         ExpandFromTile(_initialTile.GetComponent<Tile>());
 
         deck = GetComponent<TileDeck>();
@@ -53,6 +59,9 @@ public class Board : MonoBehaviour {
         ExpandFromTile(newTileComponent);
         existingTiles.Add(tileGhostToReplace.coordinate, newTileComponent);
         availableTiles.Remove(tileGhostToReplace.coordinate);
+        
+        CheckAndUpdateExistingTiles(newTileComponent);
+
         Destroy(tileGhostToReplace.gameObject);
     }
 
@@ -103,6 +112,56 @@ public class Board : MonoBehaviour {
         newTileGhost.coordinate = coordinate;
         newTileGhostGO.name = "TileGhost (" + coordinate.x + "," + coordinate.y + ")";
         return newTileGhost;
+    }
+
+    //Check the 4 possible neighbors to see if there is a connecting path
+    // if yes, set each others as neighbors
+    private void CheckAndUpdateExistingTiles(Tile tileToCheckFrom) {
+        TileCoordinate coordinateToCheck;
+        Tile tileToUpdate;
+        if (tileToCheckFrom.isNorthOpen && tileToCheckFrom.coordinate.y < sbyte.MaxValue) {
+            coordinateToCheck = new TileCoordinate(tileToCheckFrom.coordinate.x, (sbyte)(tileToCheckFrom.coordinate.y + 1));
+            if (existingTiles.ContainsKey(coordinateToCheck)) {
+                tileToUpdate = existingTiles[coordinateToCheck];
+                if (tileToUpdate.isSouthOpen) {
+                    tileToCheckFrom.northTile = tileToUpdate;
+                    tileToUpdate.southTile = tileToCheckFrom;
+                }
+            }
+        }
+
+        if (tileToCheckFrom.isSouthOpen && tileToCheckFrom.coordinate.y > sbyte.MinValue) {
+            coordinateToCheck = new TileCoordinate(tileToCheckFrom.coordinate.x, (sbyte)(tileToCheckFrom.coordinate.y - 1));
+            if (existingTiles.ContainsKey(coordinateToCheck)) {
+                tileToUpdate = existingTiles[coordinateToCheck];
+                if (tileToUpdate.isNorthOpen) {
+                    tileToCheckFrom.southTile = tileToUpdate;
+                    tileToUpdate.northTile = tileToCheckFrom;
+                }
+            }
+        }
+
+        if (tileToCheckFrom.isEastOpen && tileToCheckFrom.coordinate.x < sbyte.MaxValue) {
+            coordinateToCheck = new TileCoordinate((sbyte)(tileToCheckFrom.coordinate.x + 1), tileToCheckFrom.coordinate.y);
+            if (existingTiles.ContainsKey(coordinateToCheck)) {
+                tileToUpdate = existingTiles[coordinateToCheck];
+                if (tileToUpdate.isWestOpen) {
+                    tileToCheckFrom.eastTile = tileToUpdate;
+                    tileToUpdate.westTile = tileToCheckFrom;
+                }
+            }
+        }
+
+        if (tileToCheckFrom.isWestOpen && tileToCheckFrom.coordinate.x > sbyte.MinValue) {
+            coordinateToCheck = new TileCoordinate((sbyte)(tileToCheckFrom.coordinate.x - 1), tileToCheckFrom.coordinate.y);
+            if (existingTiles.ContainsKey(coordinateToCheck)) {
+                tileToUpdate = existingTiles[coordinateToCheck];
+                if (tileToUpdate.eastTile) {
+                    tileToCheckFrom.westTile = tileToUpdate;
+                    tileToUpdate.eastTile = tileToCheckFrom;
+                }
+            }
+        }
     }
 
     private void OnEnable() {
